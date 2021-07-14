@@ -91,9 +91,11 @@ def main():
         print ("{} de {} > ".format(count,len(linksList)) + url)
         lineList = get_claimReview(url)
         for line in lineList: claimList.append(line)
+    
     # Step 3 - Create pandas DataFrame with the new entries
     new_entries = pd.DataFrame(claimList, columns=toprow)
     new_entries = new_entries.set_index('URL')
+    
     # Step 4 - Load the old version of the dataset, update and save
     dataset = load_tsv_pandas('factCkBr')
     factCkBr = update_dataset(dataset, new_entries)
